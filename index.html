@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>
+            function computerPlay() {
+                let choices = ["rock", "paper", "scissors"];
+                return choices[Math.round(Math.random() * (2))];
+            }
+            function play(playerSelection, computerSelection) {
+                playerSelection = playerSelection.toLowerCase();
+                if (playerSelection == "rock") {
+                    if (computerSelection == "rock") {
+                        return "Stalemate. Rock has no effect on rock.";
+                    }
+                    else if (computerSelection == "paper") {
+                        return "You lost. Paper beats rock.";
+                    }
+                    else {
+                        return "You won. Rock beats scissors.";
+                    }
+                }
+                if (playerSelection == "paper") {
+                    if (computerSelection == "rock") {
+                        return "You won. Paper beats rock";
+                    }
+                    else if (computerSelection == "paper") {
+                        return "Stalemate. Paper has on effect on paper."
+                    }
+                    else {
+                        return "You lost. Scissors beats paper.";
+                    }
+                }
+                if (playerSelection == "scissors") {
+                    if (computerSelection == "rock") {
+                        return "You lost. Rock beats scissors.";
+                    }
+                    else if (computerSelection == "paper") {
+                        return "You won. Scissors beats paper.";
+                    }
+                    else {
+                        return "Stalemate. Scissors has no effect on scissors";
+                    }
+                }
+            }
+            function game(){
+                let playCtr = 0;
+                let compCtr = 0;
+                for(let i = 0; i < 5; i++){
+                    let playerChoice = prompt("Enter your move.");
+                    let compChoice = computerPlay();
+
+                    if(play(playerChoice, compChoice).includes("won")){
+                        playCtr++;
+                    }
+                    else if(play(playerChoice, compChoice).includes("lost")){
+                        compCtr++;
+                    }
+                    else{
+                        playCtr = playCtr;
+                        compCtr = compCtr;
+                    }
+                }
+                if(playCtr > compCtr){
+                    return `Player has beat computer ${playCtr} - ${compCtr}`;
+                }
+                else{
+                    return `Computer has beat player ${compCtr} - ${playCtr}`;
+                }
+            }
+
+            console.log(game());
+
+        </script>
+    </body>
+</html>
